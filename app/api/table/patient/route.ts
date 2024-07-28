@@ -48,13 +48,13 @@ export async function GET(req: Request, res: Response) {
 
     const patient = await prisma.patient.findUnique({
         where: {
-            id: id
+            id: id  || undefined
         },
     })
 
     const visits = await prisma.visit.findMany({
         where: {
-            patientId: id
+            patientId: id  || undefined
         },
     })
 

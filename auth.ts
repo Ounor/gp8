@@ -6,6 +6,7 @@ import bcrypt from 'bcryptjs';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: 'jwt' },
+  // @ts-ignore
   adapter: PrismaAdapter(prisma),
   pages: {
     signIn: '/login',
@@ -80,7 +81,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         ...params.session,
         user: {
           ...params.session.user,
+          // @ts-ignore
           id: params.token.id as string,
+          // @ts-ignore
           randomKey: params.token.randomKey,
         },
       };

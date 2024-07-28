@@ -14,7 +14,7 @@ import {useEffect, useState} from "react";
 import useSWR from "swr";
 import Link from "next/link";
 import {Button, Modal, Stack, TextField} from "@mui/material";
-import dayjs from "dayjs";
+import dayjs, {Dayjs} from "dayjs";
 import Box from "@mui/material/Box";
 import {DatePicker} from "@mui/x-date-pickers/DatePicker";
 import {LocalizationProvider} from "@mui/x-date-pickers";
@@ -27,8 +27,8 @@ const TableComponent = () => {
     const [middleName, setMiddleName] = useState("");
     const [secondName, setSecondName] = useState("");
     const [phone, setPhone] = useState("");
-    const [birthDay, setBirthDay] = useState(dayjs(new Date));
-    const [modalVisible, setModalVisible] = useState(false);
+    const [birthDay, setBirthDay] = useState<Dayjs | null>(dayjs(new Date));
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     const toggleModal = () => setModalVisible(!modalVisible);
 
@@ -72,7 +72,6 @@ const TableComponent = () => {
 
     return <LocalizationProvider
         dateAdapter={AdapterDayjs}
-        className='flex flex-row  max-w-6xl mx-auto bg-ct-dark-100 rounded-md h-[20rem]'
     >
         <Button onClick={toggleModal}>Добавить пациента</Button>
         <Modal
@@ -133,7 +132,7 @@ const TableComponent = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data?.patients.map((row) => (
+                        {data?.patients.map((row: any) => (
                             <TableRow
                                 key={row.id}
                                 sx={{'&:last-child td, &:last-child th': {border: 0}}}

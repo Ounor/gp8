@@ -1,23 +1,19 @@
 'use client'
 import {Button, Checkbox, FormControlLabel, FormGroup, Input, Stack, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
-import {useRouter} from "next/navigation";
 import {usePathname} from 'next/navigation';
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import {FixedSizeList, ListChildComponentProps} from 'react-window';
 import Paper from "@mui/material/Paper";
 import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {LocalizationProvider} from "@mui/x-date-pickers";
-import dayjs from "dayjs";
-import prisma from "@/prisma/prisma";
+import dayjs, {Dayjs} from "dayjs";
 import useSWR from "swr";
 import axios from "axios";
 // const fetcher = (url: string) => fetch(url).then((res) => res.json());
-const fetcher = async (url) => await axios.get(url).then((res) => res.data);
+const fetcher = async (url: string) => await axios.get(url).then((res) => res.data);
 
 const Patient = () => {
     const router = usePathname()
@@ -36,10 +32,10 @@ const Patient = () => {
     const [phoneHasChanged, setPhoneHasChanged] = useState(false)
     const [familyValue, setFamilyValue] = useState(data?.patient?.secondName)
     const [phoneValue, setPhoneValue] = useState('')
-    const [visitDate, setVisitDate] = useState(dayjs(new Date()))
-    const [nextVisitDate, setNextVisitDate] = useState(dayjs(new Date()))
-    const [pregnancyPeriod, setPregnancyPeriod] = useState(0)
-    const [bodyWeight, setBodyWeight] = useState(0)
+    const [visitDate, setVisitDate] = useState<Dayjs | null>(dayjs(new Date()))
+    const [nextVisitDate, setNextVisitDate] = useState<Dayjs | null>(dayjs(new Date()))
+    const [pregnancyPeriod, setPregnancyPeriod] = useState<string>('0')
+    const [bodyWeight, setBodyWeight] = useState<string>('0')
 
     const createVisit = () => {
 
@@ -71,7 +67,7 @@ const Patient = () => {
         );
     }
 
-    function renderRow(props: ListChildComponentProps) {
+    function renderRow(props: any) {
         const {index, style} = props;
         console.log(props)
         return (
@@ -84,6 +80,7 @@ const Patient = () => {
     }
 
 
+    // @ts-ignore
     return <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Paper className={'ml-16 mr-16'} elevation={2}>
             <Stack direction="row" spacing={21}>
