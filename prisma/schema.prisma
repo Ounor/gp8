@@ -10,6 +10,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Visit {
+  id            String    @id @default(uuid())
+  patientId     String
+  visitDate     DateTime
+  nextVisitDate     DateTime
+  pregnancyPeriod String
+  bodyWeight String
+
+  @@map("visits")
+}
+
+
+model Patient {
+  id            String    @id @default(uuid())
+  firstName     String?
+  middleName    String?
+  secondName    String?
+  phone         String?
+  notes         String?
+  birthDay      DateTime
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("patients")
+
+}
+
 model User {
   id            String    @id @default(uuid())
   name          String

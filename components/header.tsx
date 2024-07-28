@@ -19,11 +19,11 @@ const Header = async () => {
           </Link>
         </div>
         <ul className='flex items-center space-x-4'>
-          <li>
-            <Link href='/' className='text-ct-dark-600'>
-              Главная
-            </Link>
-          </li>
+          {/*<li>*/}
+          {/*  <Link href='/' className='text-ct-dark-600'>*/}
+          {/*    Главная*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
           {!user && (
             <>
               <li>
@@ -40,11 +40,11 @@ const Header = async () => {
           )}
           {user && (
               <>
-                <li>
-                  <Link href='/profile' className='text-ct-dark-600'>
-                    Профиль
-                  </Link>
-                </li>
+                {/*<li>*/}
+                {/*  <Link href='/profile' className='text-ct-dark-600'>*/}
+                {/*    Профиль*/}
+                {/*  </Link>*/}
+                {/*</li>*/}
                 <li className='ml-4'>
                   <Link href='/table' className='text-ct-dark-600'>
                     Таблица пациентов

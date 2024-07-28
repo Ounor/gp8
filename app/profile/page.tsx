@@ -19,7 +19,7 @@ export default async function ProfilePage() {
         <div className="max-w-4xl mx-auto bg-ct-dark-100 rounded-md h-[20rem] flex justify-center items-center">
           <div>
             <p className="mb-3 text-5xl text-center font-semibold">
-              Profile Page
+              Мой профиль
             </p>
             <div className="flex items-center gap-8">
               <div>
